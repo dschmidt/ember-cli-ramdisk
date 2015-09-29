@@ -1,8 +1,9 @@
 'use strict';
 
 var fs = require('fs');
-var execSync = require('execsyncs');
+var child_process = require('child_process');
 var rimraf = require('rimraf');
+
 
 var RAMDISK_BYTES = 2 * 1024 * 1024 * 1024;
 var BLOCK_SIZE = 512;
@@ -24,7 +25,7 @@ function ramdiskExists() {
 function runCommand(command) {
   console.log("ember-cli-ramdisk: " + command);
   try {
-    return  execSync(command).toString();
+    return  child_process.execSync(command);
   } catch(e) {
     throw new Error("ember-cli-ramdisk: error running command(" + command + "): " + e.message);
   }
